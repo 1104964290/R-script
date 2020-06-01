@@ -10,8 +10,7 @@ geneID2GO <- readMappings("gene2go_human.map")
 differentialExpressedGenes <- read.table("sample19L095_and_sample19L094.up")
 myInterestingGenes <- differentialExpressedGenes[[1]]
 names(myInterestingGenes) <- myInterestingGenes
-# Prepare the gene universe, geneList is a named factor. Note: the gene id in geneList can have some
-# replicates
+# Prepare the gene universe, geneList is a named factor.
 geneNames <- names(geneID2GO)
 geneList <- factor(as.integer(geneNames %in% myInterestingGenes))
 names(geneList) <- geneNames
