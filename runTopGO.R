@@ -3,9 +3,20 @@ setwd("~/topgo/")
 # ---------------------------------Step 1 -----------------------------------------------------------
 # The two input files: geneID2GO which is the mapping file, and the differential expressed gene list
 # file: up regulated or down regulated genes
+# geneID2GO file format:
+# ENSG00000000003 GO:0005515,GO:0005887,GO:0039532
+# ENSG00000000005 GO:0001886,GO:0001937,GO:0005515,GO:0005635,GO:0005737
+# ENSG00000000419 GO:0004169,GO:0004582,GO:0005515,GO:0005634,GO:0005783,GO:0005789,GO:0006506
+# ENSG00000000457 GO:0000139,GO:0005515,GO:0005524,GO:0005737,GO:0005794,GO:0006468,GO:0006954
+# ENSG00000000938 GO:0001784,GO:0002768,GO:0004713,GO:0004715,GO:0005102,GO:0005515,GO:0005524
+# The following are the up or down regulated gene file format:
+# ENSG00000164161
+# ENSG00000164283
+# ENSG00000205426
+# ENSG00000159167
 # ---------------------------------Step 2 -----------------------------------------------------------
 # Prepare the mapping file, the data type of geneID2GO is a list
-geneID2GO <- readMappings("gene2go_human.map")
+geneID2GO <- readMappings("gene2go.map")
 # Prepare the differential expressed gene list, myInterestingGenes is a named factor
 differentialExpressedGenes <- read.table("sample19L095_and_sample19L094.up")
 myInterestingGenes <- differentialExpressedGenes[[1]]
@@ -52,7 +63,7 @@ CC_Pvalue <- sort(CC_Pvalue)
 data_plot <- c(BP_Pvalue,MF_Pvalue,CC_Pvalue)
 
 # -------------------------------- Plot the bar plot -------------------------------------------------
-pdf("barplot_of_topGO.pdf")
+pdf("95_94_up.pdf")
 par(mar=c(1,22,3,1))
 barplot(data_plot,col=c(BP_color,MF_color,CC_color),horiz=TRUE,border=NA,
         names.arg=names(data_plot),las=2,bg="white",axes=FALSE,space =2,cex.names=.5)
